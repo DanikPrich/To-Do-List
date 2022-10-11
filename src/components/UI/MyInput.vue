@@ -1,7 +1,7 @@
 <template>
 		<form @submit.prevent="addNewTask" >
 			<div class="input_container">
-					<input type="text" v-model="task">
+					<input type="text" v-model="task" placeholder="Write...">
 			</div>
 		</form>
 	
@@ -37,12 +37,15 @@ export default {
 		padding-left: 30px;
 		border:none;
 		border-bottom: 1px #0000003d solid;
-		font-size: 20px;
-		font-family: 'Rajdhani', sans-serif;
+		font-size: 25px;
+		font-family: 'Nunito', sans-serif;
 		color: rgb(61, 61, 61);
 		
 		&:focus {
 			outline: none;
+		}
+		&::placeholder{
+			color: rgba(0, 0, 0, 0.192);
 		}
 	}
 </style>

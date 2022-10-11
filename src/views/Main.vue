@@ -107,7 +107,7 @@ export default {
     ...mapActions({
       addNewTask: "task/addNewTask",
       removeItem: "task/removeItem",
-      checkIt: "checkIt",
+      checkIt: "task/checkIt",
       updateLocalStorage: "task/updateLocalStorage"
     })
     /* addNewTask(task) {
@@ -126,11 +126,12 @@ export default {
     } */
   },
   mounted() {
-    this.setItemsFromLocalstorage()
+    if(window.localStorage.getItem('tasks')){
+      this.setItemsFromLocalstorage()
+    }
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
 </style>

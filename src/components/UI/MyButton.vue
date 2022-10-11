@@ -15,7 +15,7 @@
 <style lang="scss" scoped>
 	button {
 		font-size: 10px;
-		font-family: 'Rajdhani', sans-serif;
+		font-family: 'Nunito', sans-serif;
 		background-color: white;
 		border: none;
 		margin: 0 3px;

@@ -1,14 +1,14 @@
 <template>
 	<div class="item_container" v-show="task">
-		<div>
-			<span 
-			class="mdi checkbox mdi-checkbox-blank-circle-outline" 
+		<div 
+			class="mdi checkbox mdi-checkbox-blank-circle-outline checkbox" 
 			:class="{'mdi-checkbox-marked-circle': checked}"
 			@mousedown="$emit('checkIt')"
-			></span>
-			<span class="task__text">{{task.text}}</span>
+			></div>
+		<div  class="task__text">
+			<span>{{task.text}}</span>
 		</div>
-		<span class="mdi mdi-delete trash" @click="$emit('remove')"></span>
+		<div class="mdi mdi-delete trash" @click="$emit('remove')"></div>
 	</div>
 </template>
 
@@ -43,39 +43,44 @@ name: "post-item"
 	}
 </script>
 
-<style lang="scss" scoped>
-	.item_container{
-		padding: 3px 10px 0px 5px;
+<style lang="sass" scoped>
+	.item_container
+		padding: 3px 10px 0px 5px
 		/* padding-left: 20px; */
-		border-top: 0.5px #8b8b8b3a solid;
-		border-bottom: 0.5px #8b8b8b3a solid;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		border-top: 0.5px #8b8b8b3a solid
+		border-bottom: 0.5px #8b8b8b3a solid
+		display: flex
+		justify-content: space-between
+		align-items: center
 
-		&:last-child {
+		&:last-child 
 			border-bottom: none
-		}
-		&:first-child {
+		
+		&:first-child 
 			border-top: none
-		}
+		
 
-		.trash {
-			font-size: 15px;
-			margin-top: 3px;
-		}
+		.trash 
+			font-size: 15px
+			margin-top: 3px
+			margin-left: 6px
+		
 
-		& .checkbox {
-			margin-right: 6px;
-		}
+		& .checkbox 
+			margin-right: 6px
+		
 
-		.mdi{
-			color: grey;
-			cursor: pointer;
-		}
-	}
+		.mdi
+			color: grey
+			cursor: pointer
+		
+		.task__text
+			display: block
+			width: 100%
+		
 	
-	span { 
-		font-size: 20px;
-	}
+	
+	span 
+		font-size: 25px
+	
 </style>

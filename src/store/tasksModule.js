@@ -2,14 +2,9 @@ export const tasksModule = {
 	state: () => ({
 		tasks: [
 			{
-				id: 2, 
-				text: "Do homework",
-				complete: true
-			},
-			{
 				id: 1, 
-				text: "Kiss Nastiu",
-				complete: false
+				text: "Clean the house",
+				complete: true
 			},
 			{
 				id: 0, 
@@ -82,7 +77,7 @@ export const tasksModule = {
 			dispatch('updateLocalStorage');
 			
 		},
-		updateLocalStorage({state}) {
+		updateLocalStorage({ state }) {
 			window.localStorage.setItem('tasks', JSON.stringify(state.tasks)) 
 		}
 

@@ -23,6 +23,8 @@
 		width: 400px;
 		min-height: 40px;
 		border: 1px #0000003d solid;
-		box-shadow: 10px 10px 25px 0px #0000000e; 
+		box-shadow: 20px 20px 50px 0px #00000015; 
+		margin: 0 10px;
+		
 	}
 </style>
