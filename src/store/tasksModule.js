@@ -24,7 +24,12 @@ export const tasksModule = {
 		},
 		tasksFiltered(state) {
 			switch(state.filter) {
-				case 0: return state.tasks
+				case 0: {
+					/* let complited = state.tasks.filter(task => task.complete == true)
+					let nonComplited = state.tasks.filter(task => task.complete == false)
+					return [...nonComplited, ...complited] */
+					return state.tasks
+				}
 				break;
 
 				case 1: return state.tasks.filter(task => task.complete == false)
@@ -45,8 +50,24 @@ export const tasksModule = {
 		setTaskCompleteByIndex(state, {index, value}) {
 			state.tasks[index].complete = value
 		},
+		setTaskCompleteById(state, {id, value}) {
+			state.tasks = state.tasks.map(task => {
+				if(task.id == id) {
+					task.complete = value
+					return task
+				}
+				else return task
+			})
+		},
 		setItemsFromLocalstorage(state) {
 			state.tasks = JSON.parse(window.localStorage.getItem('tasks'))
+		},
+		removeTaskById(state, id) {
+			state.tasks.splice(state.tasks.findIndex(item => id == item.id), 1)
+		},
+		setTaskAboweIndex(state, {task, index}) {
+			if(index<0) index = state.tasks.length;
+			state.tasks.splice(index, 0, task);
 		}
 	},
 	actions: {
@@ -62,20 +83,17 @@ export const tasksModule = {
 			
 		},
 		checkIt({commit, state, dispatch}, id) {
-			let index = state.tasks.findIndex(item => id == item.id)
+			const value = !state.tasks.find(item => id == item.id).complete
+			const task = state.tasks.find(item => id == item.id)
+
+			commit('removeTaskById', id);
 			
-			/* commit('setTasks', state.tasks[index].complete ? state.tasks[index].complete = false : state.tasks[index].complete = true); */
-			/* let val = (state.tasks[index].complete) ? false : true; */
-			let value = 0;
-			if(state.tasks[index].complete) {
-				value = false;
-			} else {
-				value = true;
-			}
-			
-			commit('setTaskCompleteByIndex', {index, value})
-			dispatch('updateLocalStorage');
-			
+			commit('setTaskAboweIndex', {task: task, index: state.tasks.findIndex(item => item.complete == true)}) 
+
+			commit('setTaskCompleteById', {id, value})
+
+			dispatch('updateLocalStorage'); 
+
 		},
 		updateLocalStorage({ state }) {
 			window.localStorage.setItem('tasks', JSON.stringify(state.tasks)) 

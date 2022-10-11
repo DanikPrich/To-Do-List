@@ -3,7 +3,7 @@
 		<div 
 			class="mdi checkbox mdi-checkbox-blank-circle-outline checkbox" 
 			:class="{'mdi-checkbox-marked-circle': checked}"
-			@mousedown="$emit('checkIt')"
+			@click="$emit('checkIt', checked)"
 			></div>
 		<div  class="task__text">
 			<span>{{task.text}}</span>

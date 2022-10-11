@@ -27,7 +27,7 @@
 
 	.active{
 		border: 0.5px rgba(128, 128, 128, 0.692) solid;
-		background-color: rgb(255, 246, 235);
 		border-radius: 2px;
+		color: black;
 	}
 </style>
