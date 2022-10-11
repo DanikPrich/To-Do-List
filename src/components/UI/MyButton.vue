@@ -16,6 +16,7 @@
 	button {
 		font-size: 10px;
 		font-family: 'Nunito', sans-serif;
+		color: black;
 		background-color: white;
 		border: none;
 		margin: 0 3px;
