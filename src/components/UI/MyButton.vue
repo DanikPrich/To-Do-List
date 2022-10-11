@@ -15,10 +15,12 @@
 <style lang="scss" scoped>
 	button {
 		font-size: 10px;
-		font-family: 'Nunito', sans-serif;
+		font-family: 'Nunito Sans Extra Light';
 		background-color: white;
+		color: black;
 		border: none;
 		margin: 0 3px;
+		font-size: 13px;
 
 		&:hover {
 			cursor: pointer;

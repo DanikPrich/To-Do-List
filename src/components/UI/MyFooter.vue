@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 	.footer_container{
 		padding: 4px 4px;
-		font-size: 10px;
+		font-size: 14px;
 		width: 100%;
 		border-top: 1px #0000003d solid;
 		display: flex;

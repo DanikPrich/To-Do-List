@@ -4,12 +4,12 @@ export const tasksModule = {
 			{
 				id: 1, 
 				text: "Clean the house",
-				complete: true
+				complete: false
 			},
 			{
 				id: 0, 
 				text: "Buy milk",
-				complete: false
+				complete: true
 			},
 		],
 		filter: 0
