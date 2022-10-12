@@ -24,12 +24,7 @@ export const tasksModule = {
 		},
 		tasksFiltered(state) {
 			switch(state.filter) {
-				case 0: {
-					/* let complited = state.tasks.filter(task => task.complete == true)
-					let nonComplited = state.tasks.filter(task => task.complete == false)
-					return [...nonComplited, ...complited] */
-					return state.tasks
-				}
+				case 0: return state.tasks
 				break;
 
 				case 1: return state.tasks.filter(task => task.complete == false)
@@ -68,6 +63,15 @@ export const tasksModule = {
 		setTaskAboweIndex(state, {task, index}) {
 			if(index<0) index = state.tasks.length;
 			state.tasks.splice(index, 0, task);
+		},
+		updateTaskTextById(state, {id, newText}) {
+			state.tasks = state.tasks.map(task => {
+				if(task.id == id) {
+					task.text = newText
+					return task
+				} 
+				else return task
+			})
 		}
 	},
 	actions: {
@@ -85,13 +89,9 @@ export const tasksModule = {
 		checkIt({commit, state, dispatch}, id) {
 			const value = !state.tasks.find(item => id == item.id).complete
 			const task = state.tasks.find(item => id == item.id)
-
 			commit('removeTaskById', id);
-			
 			commit('setTaskAboweIndex', {task: task, index: state.tasks.findIndex(item => item.complete == true)}) 
-
 			commit('setTaskCompleteById', {id, value})
-
 			dispatch('updateLocalStorage'); 
 
 		},

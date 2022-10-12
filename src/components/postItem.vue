@@ -5,22 +5,26 @@
 			:class="{'mdi-checkbox-marked-circle': checked}"
 			@click="$emit('checkIt', checked)"
 			></div>
-		<div  class="task__text">
+		<!-- <div  class="task__text">
 			<span>{{task.text}}</span>
-		</div>
+		</div> -->
+		<div class="task__input">
+			<input @change="updateTask()" type="text" v-model="task.text">
+		</div> 
 		<div class="mdi mdi-delete trash" @click="$emit('remove')"></div>
 	</div>
+
 </template>
 
 <script>
+import MyInput from '@/components/UI/MyInput.vue'
 import '@mdi/font/css/materialdesignicons.css'
+import { mapActions, mapMutations } from 'vuex'
 name: "post-item"
 	export default {
 		data() {
 			return {
-				/* isRound: true, */
-				/* hovered: false, */
-				/* checked: false, */
+				text: ''
 			}
 		},
 		props: {
@@ -28,25 +32,31 @@ name: "post-item"
 			checked: Boolean,
 		},
 		methods: {
-			/* removeItem(e) {
-				this.$emit("removeItem", e)
-			}, */
-			/* checkIt() {
-				this.checked ? this.checked = false : this.checked = true 
-				this.$emit("checkIt")
-			} */
+			...mapMutations({
+				updateTaskTextById: "task/updateTaskTextById"
+			}),
+			...mapActions({
+				updateLocalStorage: "task/updateLocalStorage"
+			}),
+			updateTask() {
+				this.updateTaskTextById({id: this.task.id, newText: this.task.text})
+				this.updateLocalStorage()
+			}
 		},
-		computed: {
-			
-		}
+		components: {
+    MyInput,
+  },
+	mounted() {
+		// debugger
+		//this.text = this.task.text;
+	}
 		
 	}
 </script>
 
 <style lang="sass" scoped>
 	.item_container
-		padding: 3px 10px 0px 5px
-		/* padding-left: 20px; */
+		padding: 0px 10px 0px 5px
 		border-top: 0.5px #8b8b8b3a solid
 		border-bottom: 0.5px #8b8b8b3a solid
 		display: flex
@@ -59,7 +69,6 @@ name: "post-item"
 		&:first-child 
 			border-top: none
 		
-
 		.trash 
 			font-size: 15px
 			margin-top: 3px
@@ -69,17 +78,20 @@ name: "post-item"
 		& .checkbox 
 			margin-right: 6px
 		
-
 		.mdi
 			color: grey
 			cursor: pointer
 		
-		.task__text
+		.task__input
 			display: block
 			width: 100%
+			input
+				width: 100%
+				font-size: 20px
+				font-family: 'Nunito', sans-serif
+				border: 0
+				outline: 0
 		
-	
-	
 	span 
 		font-size: 25px
 	

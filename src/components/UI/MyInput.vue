@@ -4,7 +4,6 @@
 					<input type="text" v-model="task" placeholder="Write...">
 			</div>
 		</form>
-	
 </template>
 
 <script>
@@ -40,6 +39,7 @@ export default {
 		font-size: 25px;
 		font-family: 'Nunito';
 		color: rgb(61, 61, 61);
+		border-radius: 10px 10px 0 0 ; 
 		
 		&:focus {
 			outline: none;

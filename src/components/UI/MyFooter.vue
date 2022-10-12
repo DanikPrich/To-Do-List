@@ -62,5 +62,10 @@ export default {
 		left: 10px;
 		top: 6px
 	}
+	.btns{
+		display: flex;
+		align-items: center;
+		margin: 3px 0px;
+	}
 	
 </style>
