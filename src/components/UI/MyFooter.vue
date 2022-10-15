@@ -47,25 +47,30 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-	.footer_container{
-		padding: 4px 4px;
-		font-size: 14px;
-		width: 100%;
-		border-top: 1px #0000003d solid;
-		display: flex;
-		justify-content: space-around;
-		position: relative;
-	}
-	.items_left{
-		position: absolute;
-		left: 10px;
-		top: 6px
-	}
-	.btns{
-		display: flex;
-		align-items: center;
-		margin: 3px 0px;
-	}
+<style lang="sass" scoped>
+	.footer_container
+		padding: 4px 4px
+		font-size: 14px
+		width: 100%
+		border-top: 1px #0000003d solid
+		display: flex
+		justify-content: space-around
+		position: relative
 	
+	.items_left
+		position: absolute
+		left: 10px
+		top: 6px
+
+	.btns
+		display: flex
+		align-items: center
+		margin: 3px 0px
+	
+
+	@media (max-width: 360px) 
+		.footer_container
+			justify-content: end
+			
+		
 </style>
