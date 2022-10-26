@@ -39,7 +39,7 @@ name: "post-item"
 			}),
 			updateTask() {
 				this.updateTaskTextById({id: this.task.id, newText: this.task.text})
-				this.updateLocalStorage()
+				// this.updateLocalStorage()
 			},
 		},
 		components: {

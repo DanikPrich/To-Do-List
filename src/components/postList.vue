@@ -14,7 +14,6 @@
 <script>
 import { mapActions } from 'vuex';
 import  postItem  from "./postItem";
-	name: "post-list"
 	export default {
 		props: {
 			tasks: Array,

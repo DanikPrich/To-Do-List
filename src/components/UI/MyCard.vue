@@ -1,16 +1,23 @@
 <template>
 <div class="container">
-	<div class="card">
-		<slot></slot>
+	<div class="wrapper">
+		<my-tabs/>
+		
+		<div class="card">
+			<slot></slot>
+		</div>
 	</div>
 </div>
 </template>
 
 <script>
+import MyTabs from "@/components/UI/MyTabs.vue"
 
-	export default {
-		name: 'my-card'
-	}
+export default {
+	components: {
+		MyTabs
+	},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -18,13 +25,15 @@
 		display: flex;
 		justify-content: center;
 	}
+	.wrapper{
+		margin: 0 10px;
+	}
 	.card {
 		
 		width: 400px;
 		min-height: 40px;
 		border: 1px #0000003d solid;
 		box-shadow: 20px 20px 50px 0px #00000015; 
-		margin: 0 10px;
 		border-radius: 10px;
 	}
 </style>

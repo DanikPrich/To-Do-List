@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import  {tasksModule}  from './tasksModule.js'
+import  { tasksModule }  from './tasksModule.js'
 
 Vue.use(Vuex)
 
