@@ -88,7 +88,7 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 		margin-bottom: 5px
 	&__tab
 		margin-right: 10px
-		width: 126.3px
+		width: 110px
 		height: 22px
 		border: 1px solid #aaa
 		border-radius: 10px
@@ -136,14 +136,11 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 		&:before,
 		&:after
 			content:''
-			position:absolute
-			top:0
-			left:0
-			right:0
-			bottom:0
-		&:before,
-		&:after 
-			background:green
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
 		&:before
 			width: 2px
 			margin: 3px auto
