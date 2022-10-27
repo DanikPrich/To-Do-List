@@ -4,22 +4,22 @@
 			<button class="tabs__tab-delete">-</button>
 			{{ tab.name }}
 		</div> -->
-		<a @click="onTabClickAction(0)" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 0}">
+		<div @click="onTabClickAction(0)" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 0}">
 			<!-- <button class="tabs__tab-delete">-</button> -->
 			<span>{{ $tabsNames.first }}</span>
-		</a>
-		<a @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
+		</div>
+		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
 			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-if="$tabsCount == 2">-</a>
 			<span>{{ $tabsNames.second }}</span> 
-		</a>
-		<a @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
+		</div>
+		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
 			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</a>
 		  <span>{{ $tabsNames.third }}</span>	
-		</a>
+		</div>
 
-		<a v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
+		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
 			+
-		</a>
+		</div>
 	</div>
 </template>
 
