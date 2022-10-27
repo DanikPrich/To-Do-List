@@ -91,7 +91,7 @@ export const tasksModule = {
 		},
 		setItemsFromLocalstorage(state) {
 			const tasksFromLS = JSON.parse(window.localStorage.getItem('tasks'))
-
+			
 			if (Array.isArray(tasksFromLS[0])) {
 				state.tasks = tasksFromLS
 			} else {

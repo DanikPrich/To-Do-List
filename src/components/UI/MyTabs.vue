@@ -9,17 +9,17 @@
 			<span>{{ $tabsNames.first }}</span>
 		</a>
 		<a @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
-			<a @click="onTabRemoveAction" class="tabs__tab-delete" v-if="$tabsCount == 2">-</a>
+			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-if="$tabsCount == 2">-</a>
 			<span>{{ $tabsNames.second }}</span> 
 		</a>
 		<a @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
-			<a @click="onTabRemoveAction" class="tabs__tab-delete">-</a>
+			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</a>
 		  <span>{{ $tabsNames.third }}</span>	
 		</a>
 
-		<button v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
+		<a v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
 			+
-		</button>
+		</a>
 	</div>
 </template>
 
@@ -43,6 +43,9 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 				addTab: "task/addTab",
 				removeTab: "task/removeTab"
     	}),
+			...mapActions({
+      	updateLocalStorage: "task/updateLocalStorage"
+			}),
 			onTabsAddAction() {
 				/* if (this.tabs.length < 3) {
 					this.tabs.push({
@@ -51,16 +54,19 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 					})
 				} */
 				if(this.$tabsCount < 3){
-					this.addTab()
+					this.addTab();
+					this.updateLocalStorage();
 				}
 			},
 			onTabRemoveAction() {
 				if(this.$tabsCount > 1) {
-					this.removeTab()
+					this.removeTab();
+					this.updateLocalStorage();
 				}
 			},
 			onTabClickAction(tabIndex) {
-				this.setCurrentTab(tabIndex)
+				this.setCurrentTab(tabIndex);
+				this.updateLocalStorage();
 			}
 		},
 		computed: {
@@ -116,38 +122,52 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 		&-active
 			background-color: #ebebeb
 			border-color: #d6d6d6
-			
-			
-
-
-
 	&__plus
-		border: 1px solid #aaa
-		box-shadow: inset 1px 1px 3px #fff
+		border-radius: 999px
 		width: 22px
 		height: 22px
-		border-radius: 100%
-		position: relative
-		display: inline-block
-		vertical-align: middle
+		padding: 0px
 		background: white
+		border: 1px solid #aaa
+		color: black
+		text-align: center
+		// font: 13px Arial, sans-serif
+		line-height: 1.2em
+		// position: absolute
+		// right: -5px
+		// top: -5px
 		cursor: pointer
-		color: rgb(61, 61, 61)
-		&:before,
-		&:after
-			content:''
-			position: absolute
-			top: 0
-			left: 0
-			right: 0
-			bottom: 0
-		&:before
-			width: 2px
-			margin: 3px auto
-		&:after
-			margin: auto 3px
-			height: 2px
-			box-shadow: none
+
+
+
+
+
+		// border: 1px solid #aaa
+		// box-shadow: inset 1px 1px 3px #fff
+		// width: 22px
+		// height: 22px
+		// border-radius: 100%
+		// position: relative
+		// display: inline-block
+		// vertical-align: middle
+		// background: white
+		// cursor: pointer
+		// color: rgb(61, 61, 61)
+		// &:before,
+		// &:after
+		// 	content:''
+		// 	position: absolute
+		// 	top: 0
+		// 	left: 0
+		// 	right: 0
+		// 	bottom: 0
+		// &:before
+		// 	width: 2px
+		// 	margin: 3px auto
+		// &:after
+		// 	margin: auto 3px
+		// 	height: 2px
+		// 	box-shadow: none
 
 
 </style>
