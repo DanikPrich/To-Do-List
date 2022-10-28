@@ -33,7 +33,6 @@ export default {
 	},
 
 	mounted() {
-		// this.calcHeight();
 		document.fonts.ready
 		.then(()=>{
 			this.calcHeight();

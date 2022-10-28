@@ -4,11 +4,7 @@ export const tasksModule = {
 	state: () => ({
 		tabsCount: 1,
 		currentTabIndex: 0,
-		tabsNames: {
-			first: 'First tab',
-			second: 'Second tab',
-			third: 'Third tab'
-		},
+		tabsNames: ['First tab', 'Second tab', 'Third tab'],
 		tasks: [
 			[
 				{
@@ -91,11 +87,18 @@ export const tasksModule = {
 		},
 		setItemsFromLocalstorage(state) {
 			const tasksFromLS = JSON.parse(window.localStorage.getItem('tasks'))
+			const tabsNames = JSON.parse(window.localStorage.getItem('tabsNames'))
 			
 			if (Array.isArray(tasksFromLS[0])) {
 				state.tasks = tasksFromLS
 			} else {
 				Vue.set(state.tasks, 0, tasksFromLS);
+			}
+
+			if (Array.isArray(tabsNames)){
+				state.tabsNames = tabsNames
+			} else {
+				state.tabsNames = Object.values(tabsNames)
 			}
 
 			//state.tasks = JSON.parse(window.localStorage.getItem('tasks'))
@@ -118,6 +121,7 @@ export const tasksModule = {
 				} 
 				else return task
 			})
+			window.localStorage.setItem('tasks', JSON.stringify(state.tasks)) 
 		},
 		setCurrentTab(state, currentTabIndex) {
 			state.currentTabIndex = currentTabIndex;
@@ -128,6 +132,10 @@ export const tasksModule = {
 		removeTab(state) {
 			if(state.currentTabIndex == state.tabsCount - 1) state.currentTabIndex --;
 			state.tabsCount--;
+		},
+		changeCurrentTabName(state, { newTabName }) {
+			Vue.set(state.tabsNames, state.currentTabIndex, newTabName)
+			window.localStorage.setItem('tabsNames', JSON.stringify(state.tabsNames))
 		}
 	},
 	actions: {
@@ -149,13 +157,12 @@ export const tasksModule = {
 			commit('setTaskAboweIndex', {task: task, index: state.tasks[state.currentTabIndex].findIndex(item => item.complete == true)}) 
 			commit('setTaskCompleteById', {id, value})
 			dispatch('updateLocalStorage'); 
-
 		},
 		updateLocalStorage({ state }) {
 			window.localStorage.setItem('tasks', JSON.stringify(state.tasks)) 
 			window.localStorage.setItem('tabsCount', JSON.stringify(state.tabsCount)) 
 			window.localStorage.setItem('currentTabIndex', JSON.stringify(state.currentTabIndex)) 
-			//window.localStorage.setItem('tabsNames', JSON.stringify(state.tabsNames)) 
+			window.localStorage.setItem('tabsNames', JSON.stringify(state.tabsNames)) 
 		},
 	},
 	namespaced: true,

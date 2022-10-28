@@ -5,6 +5,7 @@ import MyButton from './MyButton'
 import MyTextArea from './MyTextArea'
 import MyTabs from './MyTabs'
 import MyFooter from './MyFooter'
+import TabNameCard from './TabNameCard'
 
 export {
 	MyTitle,
@@ -13,5 +14,6 @@ export {
 	MyButton,
 	MyTextArea,
 	MyTabs,
-	MyFooter
+	MyFooter,
+	TabNameCard
 }

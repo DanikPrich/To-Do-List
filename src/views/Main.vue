@@ -13,7 +13,7 @@
       </post-list>
 
       <my-footer 
-      :total="$tasks.length"
+      :total="$tasks[$currentTabIndex].length"
       />
     </my-card>
   </div>
@@ -43,6 +43,7 @@ export default {
     ...mapState("task", {
       $tasks: "tasks",
       $filter: "filter",
+      $currentTabIndex: "currentTabIndex"
     }),
     ...mapGetters({
       // newId: "task/newId",
