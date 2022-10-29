@@ -25,14 +25,8 @@ import  postItem  from "./postItem";
 			...mapActions({
 				checkIt: "task/checkIt"
 			})
-		},
-		computed: {
-			
 		}
-		
 	}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

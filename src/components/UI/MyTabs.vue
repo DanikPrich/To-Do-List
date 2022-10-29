@@ -4,14 +4,13 @@
 			<span>{{ $tabsNames[0] }}</span>
 		</div>
 		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
-			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-if="$tabsCount == 2">-</a>
 			<span>{{ $tabsNames[1] }}</span> 
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete " :class="{'tabs__tab-delete-disabled':$tabsCount != 2}">-</div>
 		</div>
 		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
-			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</a>
 		  <span>{{ $tabsNames[2] }}</span>	
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</div>
 		</div>
-
 		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
 			+
 		</div>
@@ -19,14 +18,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
+import { mapActions, mapState, mapMutations} from 'vuex'
 	export default {
 		name: 'MyTabs',
-		data() {
-			return {
-				tabsCount: 1,
-			}
-		},
 		methods: {
 			...mapMutations({
       	setCurrentTab: "task/setCurrentTab",
@@ -65,7 +59,6 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 </script>
 
 <style lang="sass" scoped>
-
 .tabs
 	&__block
 		display: flex
@@ -97,6 +90,8 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 			right: -5px
 			top: -5px
 			cursor: pointer
+			&-disabled
+				top: -1000px
 		&-active
 			background-color: #ebebeb
 			border-color: #d6d6d6
@@ -111,7 +106,4 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 		text-align: center
 		line-height: 1.2em
 		cursor: pointer
-
-
-
 </style>
