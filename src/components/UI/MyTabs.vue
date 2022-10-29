@@ -4,7 +4,7 @@
 			<span>{{ $tabsNames[0] }}</span>
 		</div>
 		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
-			<!-- <a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-if="$tabsCount == 2">-</a> -->
+			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-show="$tabsCount == 2">-</a>
 			<span>{{ $tabsNames[1] }}</span> 
 		</div>
 		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
