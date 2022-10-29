@@ -1,7 +1,7 @@
 <template>
 	<div class="item_container" v-show="task">
 		<div 
-			class="mdi checkbox mdi-checkbox-blank-circle-outline checkbox" 
+			class="mdi checkbox mdi-checkbox-blank-circle-outline" 
 			:class="{'mdi-checkbox-marked-circle': checked}"
 			@click="$emit('checkIt', checked)"
 		/>
@@ -39,7 +39,7 @@ name: "post-item"
 			}),
 			updateTask() {
 				this.updateTaskTextById({id: this.task.id, newText: this.task.text})
-				// this.updateLocalStorage()
+				this.updateLocalStorage()
 			},
 		},
 		components: {
@@ -56,26 +56,19 @@ name: "post-item"
 		display: flex
 		justify-content: space-between
 		align-items: center
-
 		&:last-child 
 			border-bottom: none
-		
 		&:first-child 
 			border-top: none
-		
 		.trash 
 			font-size: 15px
 			margin-top: 3px
 			margin-left: 6px
-		
-
 		& .checkbox 
 			margin-right: 6px
-		
 		.mdi
 			color: grey
 			cursor: pointer
-		
 		.task__textarea
 			display: block
 			width: 100%
