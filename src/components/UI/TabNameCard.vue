@@ -86,6 +86,7 @@ import { mapMutations } from 'vuex'
 			&-input{
 				border-radius: 5px;
 				border: 1px #0000003d solid;
+				font-size: 20px;
 			}
 			&-btn{
 				margin-left: 10px;
