@@ -3,14 +3,23 @@
 		<div @click="onTabClickAction(0)" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 0}">
 			<span>{{ $tabsNames[0] }}</span>
 		</div>
+
+
+
 		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
 			<span>{{ $tabsNames[1] }}</span> 
 			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete " :class="{'tabs__tab-delete-disabled':$tabsCount != 2}">-</div>
 		</div>
+
+
+
 		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
 		  <span>{{ $tabsNames[2] }}</span>	
 			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</div>
 		</div>
+
+
+		
 
 		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
 			+
@@ -98,7 +107,8 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 			top: -5px
 			cursor: pointer
 			&-disabled
-				display: none
+				// display: none
+				top: -300px
 		&-active
 			background-color: #ebebeb
 			border-color: #d6d6d6
