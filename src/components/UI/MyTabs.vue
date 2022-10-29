@@ -4,12 +4,12 @@
 			<span>{{ $tabsNames[0] }}</span>
 		</div>
 		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
-			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete" v-show="$tabsCount == 2">-</a>
 			<span>{{ $tabsNames[1] }}</span> 
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete " :class="{'tabs__tab-delete-disabled':$tabsCount != 2}">-</div>
 		</div>
 		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
-			<a @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</a>
 		  <span>{{ $tabsNames[2] }}</span>	
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</div>
 		</div>
 
 		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
@@ -37,10 +37,10 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
       	updateLocalStorage: "task/updateLocalStorage"
 			}),
 			onTabsAddAction() {
-				this.addTab();
-				/* if(this.$tabsCount < 3){
-					//this.updateLocalStorage();
-				} */
+				if(this.$tabsCount < 3){
+					this.addTab();
+					this.updateLocalStorage();
+				}
 			},
 			onTabRemoveAction() {
 				if(this.$tabsCount > 1) {
@@ -97,6 +97,8 @@ import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 			right: -5px
 			top: -5px
 			cursor: pointer
+			&-disabled
+				display: none
 		&-active
 			background-color: #ebebeb
 			border-color: #d6d6d6
