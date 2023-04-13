@@ -5,15 +5,17 @@
 		</div>
 		<div @click="onTabClickAction(1)" v-if="$tabsCount > 1" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 1}">
 			<span>{{ $tabsNames[1] }}</span> 
-			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete " :class="{'tabs__tab-delete-disabled':$tabsCount != 2}">-</div>
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-close " :class="{'tabs__tab-close_disabled':$tabsCount != 2}">
+				
+			</div>
 		</div>
 		<div @click="onTabClickAction(2)" v-if="$tabsCount > 2" class="tabs__tab" :class="{'tabs__tab-active': $currentTabIndex == 2}">
 		  <span>{{ $tabsNames[2] }}</span>	
-			<div @click.stop="onTabRemoveAction" class="tabs__tab-delete">-</div>
+			<div @click.stop="onTabRemoveAction" class="tabs__tab-close">
+				
+			</div>
 		</div>
-		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">
-			+
-		</div>
+		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">+</div>
 	</div>
 </template>
 
@@ -75,35 +77,50 @@ import { mapActions, mapState, mapMutations} from 'vuex'
 		cursor: pointer
 		&:last-child
 			margin-right: 0px
-		&-delete
-			border-radius: 999px
-			width: 13px
-			height: 13px
-			padding: 0px
+		&-close
+			border-radius: 30px
+			width: 14px
+			height: 14px
+			// padding: 0px
 			background: white
 			border: 1px solid #aaa
-			color: black
-			text-align: center
-			font: 13px Arial, sans-serif
-			line-height: 0.7em
+			cursor: pointer
+			// color: black
+			// text-align: center
+			// font: 13px Arial, sans-serif
+			// line-height: 0.7em
 			position: absolute
 			right: -5px
 			top: -5px
-			cursor: pointer
-			&-disabled
+			display: flex
+			justify-content: center
+			align-items: center
+			flex-direction: column
+			&::after 
+				content: ''
+				display: block
+				width: 5px
+				height: 1px
+				// position: absolute
+				// top: 7px
+				// left: 7px
+				background-color: black
+			&_disabled
 				top: -1000px
 		&-active
 			background-color: #ebebeb
 			border-color: #d6d6d6
 	&__plus
-		border-radius: 999px
+		font-size: 15px
+		display: flex
+		justify-content: center
+		flex-direction: column
+		border-radius: 30px
+		border: 1px solid #aaa
+		cursor: pointer
 		width: 22px
 		height: 22px
-		padding: 0px
-		background: white
-		border: 1px solid #aaa
-		color: black
 		text-align: center
-		line-height: 1.2em
-		cursor: pointer
+
+    
 </style>

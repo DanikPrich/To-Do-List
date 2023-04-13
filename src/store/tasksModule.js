@@ -1,4 +1,5 @@
 import Vue from "vue"
+import uniqid from 'uniqid';
 
 export const tasksModule = {
 	state: () => ({
@@ -8,12 +9,12 @@ export const tasksModule = {
 		tasks: [
 			[
 				{
-					id: 1, 
+					id: "lgfhssy0", 
 					text: "First tab 1",
 					complete: false
 				},
 				{
-					id: 5, 
+					id: "lgfhsyfc", 
 					text: "Fitst tab 2",
 					complete: true
 				}
@@ -21,12 +22,12 @@ export const tasksModule = {
 
 			[
 				{
-					id: 1, 
+					id: "lgfhui9m", 
 					text: "Second tab 1",
 					complete: false
 				},
 				{
-					id: 24, 
+					id: "lgfhui9d", 
 					text: "Second tab 2",
 					complete: true
 				}
@@ -34,12 +35,12 @@ export const tasksModule = {
 
 			[
 				{
-					id: 1, 
+					id: "lgfhui1m", 
 					text: "Third tab 1",
 					complete: false
 				},
 				{
-					id: 3, 
+					id: "lgfasf8a", 
 					text: "Third tab 2",
 					complete: true
 				}
@@ -48,9 +49,9 @@ export const tasksModule = {
 		filter: 0
 	}),
 	getters: {
-		newIdInCurrentTab(state) {
-			return Math.max(...state.tasks[state.currentTabIndex].map(task => task.id)) + 1
-		},
+		// newIdInCurrentTab(state) {
+		// 	return Math.max(...state.tasks[state.currentTabIndex].map(task => task.id)) + 1
+		// },
 		tasksFiltered(state) {
 			switch(state.filter) {
 				case 0: 
@@ -75,13 +76,11 @@ export const tasksModule = {
 			state.tasks[index].complete = value
 		}, */
 		setTaskCompleteById(state, {id, value}) {
-			let tasks = state.tasks[state.currentTabIndex].map(task => {
-				if(task.id == id) {
-					task.complete = value
+			let tasks = state.tasks[state.currentTabIndex]
+				.map(task => {
+					if(task.id == id) task.complete = value
 					return task
-				}
-				else return task
-			})	
+				})	
 
 			Vue.set(state.tasks, state.currentTabIndex, tasks)
 		},
@@ -140,7 +139,7 @@ export const tasksModule = {
 	},
 	actions: {
 		addNewTask({commit, state, getters, dispatch}, task) {
-			commit('setTasks', [{id: getters.newIdInCurrentTab, text: task, complete: false}, ...state.tasks[state.currentTabIndex]])
+			commit('setTasks', [{id: uniqid(), text: task, complete: false}, ...state.tasks[state.currentTabIndex]])
 			dispatch('updateLocalStorage');
 			
 		},
