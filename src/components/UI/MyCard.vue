@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<!-- <div class="container"> -->
 	<div class="wrapper">
 		<my-tabs/>
 		
@@ -7,7 +7,7 @@
 			<slot></slot>
 		</div>
 	</div>
-</div>
+<!-- </div> -->
 </template>
 
 <script>
@@ -25,12 +25,8 @@ export default {
 		display: flex;
 		justify-content: center;
 	}
-	.wrapper{
-		margin: 0 10px;
-	}
 	.card {
-		
-		width: 350px;
+		/* width: 350px; */
 		min-height: 40px;
 		border: 1px #0000003d solid;
 		box-shadow: 20px 20px 50px 0px #00000015; 

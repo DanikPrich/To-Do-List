@@ -60,19 +60,38 @@ name: "post-item"
 			border-bottom: none
 		&:first-child 
 			border-top: none
-		.trash 
-			font-size: 15px
-			margin-top: 3px
-			margin-left: 6px
 		& .checkbox 
-			margin-right: 6px
-		.mdi
-			color: grey
-			cursor: pointer
-		.task__textarea
-			display: block
-			width: 100%
 			display: flex
-			align-items: center
+			justify-content: center
+			width: 40px
+			// margin-right: 6px
+			font-size: 25px
+	.trash 
+		font-size: 25px
+		margin-top: 3px
+		margin-left: 6px
+	.mdi
+		color: grey
+		cursor: pointer
+	.task__textarea
+		display: block
+		width: 100%
+		display: flex
+		align-items: center
+
+@media (max-width: 920px)
+	.item_container
+		& .checkbox 
+				font-size: 18px
+	.trash 
+		font-size: 18px
+
+@media (max-width: 550px)
+	.item_container
+		& .checkbox 
+			width: 30px
+			font-size: 16px
+	.trash 
+		font-size: 16px
 				
 </style>

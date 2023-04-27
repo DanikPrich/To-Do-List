@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="container">
     <my-title>ToDo List</my-title>
     <my-card>
       <my-input 
@@ -72,5 +72,30 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1250px) {
+  .container {
+    max-width: 870px;
+  }
+}
+
+@media (max-width: 920px) {
+  .container {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 550px) {
+  .container {
+    max-width: auto;
+    margin: 0 30px;
+  }
+}
+
 </style>

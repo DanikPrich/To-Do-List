@@ -36,7 +36,7 @@ export default {
 		padding-left: 30px;
 		border:none;
 		border-bottom: 1px #0000003d solid;
-		font-size: 25px;
+		font-size: 30px;
 		font-family: 'Nunito';
 		color: rgb(61, 61, 61);
 		border-radius: 10px 10px 0 0 ; 
@@ -48,4 +48,10 @@ export default {
 			color: rgba(0, 0, 0, 0.192);
 		}
 	}
+
+@media (max-width: 550px) {
+	input {
+		font-size: 24px;
+	}	
+}
 </style>

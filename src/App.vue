@@ -17,6 +17,7 @@
 
 #app, html, body {
   font-family: 'Nunito', sans-serif;
+  margin: 0;
 } 
 *{
   box-sizing: border-box;

@@ -1,9 +1,9 @@
 <template>
-	<div class="footer_container">
-		<div class="items_left">
+	<div class="footer-container">
+		<div class="footer-left">
 			{{total}} items left	
 		</div>
-		<div class="btns">
+		<div class="footer-btns">
 			<my-button 
 			v-for="item in btnItems"
 			:key="btnItems.indexOf(item)"
@@ -13,12 +13,12 @@
 			</my-button>
 		</div>
 		<div >
-			<a @click="popupShowChangeAction" class="changeTabName">Change tab name</a>
-			<popup :show="changeTabNamePopupShow" @closePopup="popupShowChangeAction">
-				<tab-name-card @closePopup="popupShowChangeAction">
+			<a @click="modalShowChangeAction" class="footer-right">Change tab name</a>
+			<modal :show="changeTabNameModalShow" @closeModal="modalShowChangeAction">
+				<tab-name-card @closeModal="modalShowChangeAction">
 					New tab name
 				</tab-name-card>
-			</popup>	
+			</modal>	
 		</div>
 	</div>
 	
@@ -27,7 +27,7 @@
 <script>
 import MyButton from '@/components/UI/MyButton.vue';
 import TabNameCard from '@/components/UI/TabNameCard.vue';
-import Popup from '@/components/Popup.vue';
+import Modal from '@/components/Modal.vue';
 
 import { mapMutations } from 'vuex';
 export default {
@@ -36,7 +36,7 @@ export default {
 		return {
 			btnActives: [true, false, false],
 			btnItems: ["All", "Active", "Completed"],
-			changeTabNamePopupShow: false
+			changeTabNameModalShow: false
 		}
 	}, 
 	props: {
@@ -44,7 +44,7 @@ export default {
 	},
 	components: {
 		MyButton,
-		Popup,
+		Modal,
 		TabNameCard
 	},
 	methods: {
@@ -58,41 +58,86 @@ export default {
 			this.btnActives[e] = true
 		},
 
-		popupShowChangeAction(){
-			this.changeTabNamePopupShow = !this.changeTabNamePopupShow
+		modalShowChangeAction(){
+			this.changeTabNameModalShow = !this.changeTabNameModalShow
 		}
 	}
 }
 </script>
 
 <style lang="sass" scoped>
-	.footer_container
-		padding: 4px 4px
-		font-size: 14px
-		width: 100%
-		border-top: 1px rgb(0 0 0 / 24%) solid
-		display: flex
-		justify-content: space-around
-		position: relative
+	.footer
+		&-container
+			position: relative
+			display: flex
+			justify-content: space-between
+			align-items: center
+			padding: 10px 25px
+			font-size: 20px
+			border-top: 1px rgb(0 0 0 / 24%) solid
 	
-	.items_left
-		left: 10px
-		top: 6px
-		font-size: 10px
-		margin: auto 0
+		&-left
+			margin: auto 0
 
-	.btns
-		display: flex
-		align-items: center
-		margin: 3px 0px
+		&-btns
+			display: flex
+			align-items: center
+			margin: 3px 0px
 	
-	.changeTabName
-		cursor: pointer
-		font-size: 10px
-
-	// @media (max-width: 360px) 
-	// 	.footer_container
-	// 		justify-content: end
+		&-right
+			// border: 0.5px rgba(128, 128, 128, 0.692) solid
+			// padding: 5px 10px
+			// border-radius: 10px
+			cursor: pointer
+			text-decoration: underline
 			
+
+@media (max-width: 920px)
+	.footer
+		&-container
+			padding: 10px 10px
+			font-size: 14px
+
+		&-left
+			margin: auto 0
+
+		&-btns
+			margin: 3px 0px
+
+		&-right
+			cursor: pointer
+
+@media (max-width: 550px)
+	.footer
+			&-container
+				padding: 10px 10px
+				font-size: 10px
 		
+			&-left
+				margin: auto 0
+
+			&-btns
+				// margin: 3px 0px
+				// order: -1
+		
+			&-right
+				cursor: pointer
+
+@media (max-width: 340px)
+	.footer
+			&-container
+				padding: 10px 10px
+				font-size: 18px
+				flex-direction: column
+				gap: 7px
+		
+			&-left
+				margin: auto 0
+
+			&-btns
+				margin: 3px 0px
+				order: -1
+		
+			&-right
+				cursor: pointer
 </style>

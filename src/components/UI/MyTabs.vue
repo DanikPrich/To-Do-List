@@ -15,7 +15,9 @@
 				
 			</div>
 		</div>
-		<div v-if="$tabsCount < 3" @click="onTabsAddAction" class="tabs__plus">+</div>
+		<div v-if="$tabsCount < 3" class="tabs-add">
+			<div @click="onTabsAddAction" class="tabs-add__btn">+</div>
+		</div>
 	</div>
 </template>
 
@@ -64,63 +66,107 @@ import { mapActions, mapState, mapMutations} from 'vuex'
 .tabs
 	&__block
 		display: flex
-		margin-bottom: 5px
+		justify-content: space-between
+		margin-bottom: 15px
 	&__tab
-		margin-right: 10px
-		width: 110px
-		height: 22px
-		border: 1px solid #aaa
-		border-radius: 10px
-		text-align: center	
 		position: relative
-		font-size: 15px
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 32%
+		height: 35px
+		// margin-right: 10px
+		text-align: center	
+		border: 1px solid #aaa
+		border-radius: 35px
+		font-size: 24px
 		cursor: pointer
 		&:last-child
 			margin-right: 0px
 		&-close
-			border-radius: 30px
-			width: 14px
-			height: 14px
-			// padding: 0px
-			background: white
-			border: 1px solid #aaa
-			cursor: pointer
-			// color: black
-			// text-align: center
-			// font: 13px Arial, sans-serif
-			// line-height: 0.7em
 			position: absolute
-			right: -5px
-			top: -5px
+			right: -10px
+			top: -10px
 			display: flex
 			justify-content: center
 			align-items: center
 			flex-direction: column
+			width: 25px
+			height: 25px
+			border-radius: 30px
+			background: white
+			border: 1px solid #aaa
+			cursor: pointer
+			font-size: 24px
 			&::after 
 				content: ''
 				display: block
-				width: 5px
+				width: 8px
 				height: 1px
 				// position: absolute
 				// top: 7px
 				// left: 7px
 				background-color: black
 			&_disabled
-				top: -1000px
+				opacity: 0
 		&-active
 			background-color: #ebebeb
-			border-color: #d6d6d6
-	&__plus
-		font-size: 15px
+			border-color: #646464
+	&-add
 		display: flex
-		justify-content: center
-		flex-direction: column
-		border-radius: 30px
-		border: 1px solid #aaa
-		cursor: pointer
-		width: 22px
-		height: 22px
-		text-align: center
+		justify-content: end
+		width: 32%
+		&__btn
+			font-size: 24px
+			display: flex
+			justify-content: center
+			flex-direction: column
+			border-radius: 30px
+			border: 1px solid #aaa
+			cursor: pointer
+			width: 35px
+			height: 100%
+			text-align: center
 
-    
+@media (max-width: 1250px) 
+	
+@media (max-width: 920px)
+	.tabs
+			&__block
+				margin-bottom: 10px
+			&__tab
+				font-size: 18px
+				height: 30px
+				&-close
+					top: -8px
+					right: -8px
+					height: 20px
+					width: 20px
+			&-add
+				&__btn
+					width: 30px
+					height: 30px
+					font-size: 18px
+
+@media (max-width: 550px)
+	.tabs
+		&__block
+			margin-bottom: 5px
+		&__tab
+			// width: 32%
+			font-size: 14px
+			height: 25px
+			&-close
+				top: -5px
+				right: -5px
+				height: 15px
+				width: 15px
+				&::after
+					width: 5px
+		&-add
+			&__btn
+				width: 25px
+				height: 25px
+				font-size: 14px
+
 </style>

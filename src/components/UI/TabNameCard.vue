@@ -1,23 +1,21 @@
 <template>
-	<div class="container">
-			<div class="container__inner">
-				<div class="container__inner-title">
-					<slot></slot>
-				</div>
-				<form class="container__inner-body" @submit.prevent="changeTabNameAction">
-					<input type="text" class="container__inner-input" name="" id="" v-model="newTabName">
-					<button 
-						type="submit"
-						class="container__inner-btn"
-					>
-						Change
-					</button>
-				</form>
-				<span v-if="attention" class="container__inner-attention">
-					Max 8 symbols
-				</span>
-			</div>
+	<div class="modal-card">
+		<div class="modal-card__title">
+			<slot></slot>
 		</div>
+		<form class="modal-card__form" @submit.prevent="changeTabNameAction">
+			<input type="text" class="modal-card__input" name="" id="" v-model="newTabName">
+			<button 
+				type="submit"
+				class="modal-card__btn"
+			>
+				Change
+			</button>
+		</form>
+		<span v-if="attention" class="modal-card__attention">
+			Max 8 symbols
+		</span>
+	</div>
 </template>
 
 <script>
@@ -37,7 +35,7 @@ import { mapMutations } from 'vuex'
 			changeTabNameAction() {
 				if(this.newTabName) {
 					this.changeCurrentTabName({ newTabName: this.newTabName })
-					this.$emit('closePopup')
+					this.$emit('closeModal')
 				}
 			},
 		},
@@ -58,50 +56,100 @@ import { mapMutations } from 'vuex'
 
 <style lang="scss" scoped>
 
-	.container {
-		display: block;
+	.modal-card {
 		background-color: #fff;
-		margin: auto 50px;
+		margin: 0 auto;
+		max-width: 430px;
 		border-radius: 10px;
-		&__inner {
-			padding: 20px;
-			min-height: 100px;
+		padding: 20px;
+		text-align: center;
+
+		&__title{
+			text-align: center;
+			font-size: 30px;
+			margin-bottom: 10px;
+		}
+		&__form{
 			display: flex;
-			flex-direction: column;
-			&-title{
-				text-align: center;
-				font-size: 20px;
-				margin-bottom: 10px;
-			}
-			&-body{
-				display: flex;
-			}
-			&-input{
-				width: 160px;
-				color: rgb(66, 66, 66);
-				background-color: #fff;
-				font-family: 'Nunito';
-				outline: none;
-			}
-			&-input{
-				border-radius: 5px;
-				border: 1px #0000003d solid;
-				font-size: 20px;
-			}
-			&-btn{
-				margin-left: 10px;
-				border-radius: 5px;
-				border: 1px #0000003d solid;
-				color: rgb(66, 66, 66);
-				background-color: #fff;
+			justify-content: space-between;
+		}
+		&__input{
+			color: rgb(66, 66, 66);
+			background-color: #fff;
 			font-family: 'Nunito';
+			outline: none;
+			border-radius: 5px;
+			border: 1px #0000003d solid;
+			font-size: 24px;
+		}
+		&__btn{
+			padding: 3px 10px;
+			color: rgb(66, 66, 66);
+			font-size: 24px;
+			background-color: #fff;
+			font-family: 'Nunito';
+			border: 1px #0000003d solid;
+			border-radius: 5px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #e9e9e990;
 			}
-			&-attention{
-				margin-top: 10px;
-				text-align: center;
-				color: red;
+		}
+		&__attention{
+			display: inline-block;
+			margin-top: 15px;
+			font-size: 14px;
+			text-align: center;
+			color: red;
+		}
+	}
+
+	@media (max-width: 920px) {
+		.modal-card {
+			max-width: 330px;
+			&__title{
+				font-size: 20px;
+			}
+			&__input{
+				width: 190px;
+				font-size: 20px;
+			}
+			&__btn {
+				font-size: 18px;
 			}
 		}
 	}
 
+
+	@media (max-width: 550px) {
+		.modal-card {
+			max-width: 290px;
+			&__title{
+				font-size: 17px;
+			}
+			&__input{
+				width: 160px;
+				font-size: 17px;
+			}
+			&__btn {
+				font-size: 15px;
+			}
+		}
+	}
+	@media (max-width: 340px) {
+		.modal-card {
+			max-width: 260px;
+			&__title{
+				font-size: 17px;
+			}
+			&__input{
+				width: 140px;
+				font-size: 17px;
+			}
+			&__btn {
+				font-size: 13px;
+			}
+		}
+	}
 </style>

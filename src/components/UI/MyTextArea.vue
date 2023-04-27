@@ -51,10 +51,20 @@ export default {
 		resize: none
 		height: 0
 		overflow: hidden
-		font-size: 20px
+		font-size: 30px
 		width: 100%
 		border: none
 		font-family: 'Nunito', sans-serif
 		outline: 0 
 		box-sizing: border-box 
+
+
+
+@media (max-width: 920px)
+	.textarea 
+			font-size: 22px
+
+@media (max-width: 550px)
+	.textarea 
+			font-size: 18px
 </style>
